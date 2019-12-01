@@ -1,8 +1,11 @@
 import React from 'react';
 
 class Test extends React.Component {
-  state = {
-    a: 'test',
+  constructor(props) {
+    super(props);
+    this.state = {
+      a: 'test'
+    };
   }
 
   handleClick = () => {
@@ -18,7 +21,7 @@ class Test extends React.Component {
     return (
       <div>
         <h2>{a}</h2>
-        <button onClick={this.handleClick}>
+        <button type="button" onClick={this.handleClick}>
           点击
         </button>
       </div>

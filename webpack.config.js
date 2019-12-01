@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack')
 
 module.exports = function (env, argv) {
   const isEnvDevelopment = argv.mode === 'development' || !argv.mode;
@@ -14,22 +15,43 @@ module.exports = function (env, argv) {
       path: path.resolve(__dirname, 'dist')
     },
     module: {
-      rules: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader'
-      }]
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: 'babel-loader'
+        }, {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          enforce: 'pre',
+          use: 'eslint-loader'
+        }, {
+          test: /\.css$/,
+          use: [
+            'style-loader',
+            'css-loader'
+          ]
+        }
+      ]
     },
     // devServer配置
     devServer: {
       contentBase: './dist',
+      hot: true
     },
 
     // 插件
     plugins: [
       new HtmlWebpackPlugin({
         template: 'index.html'
-      })
-    ]
+      }),
+      new webpack.NamedChunksPlugin(),
+      new webpack.HotModuleReplacementPlugin()
+    ],
+    resolve: {
+      alias: {
+        '@': path.resolve('src')
+      }
+    }
   };
 }

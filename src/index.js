@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
-import Test from './components/test';
+import App from './components/App';
+import 'normalize.css/normalize.css'
 
 ReactDOM.render(
-  <Test />,
+  <App />,
   document.getElementById('id'),
 );
