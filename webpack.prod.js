@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require('webpack')
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = function (env, argv) {
   const isEnvDevelopment = argv.mode === 'development' || !argv.mode;
@@ -28,12 +29,12 @@ module.exports = function (env, argv) {
         }, {
           test: /\.css$/,
           include: [path.resolve(__dirname, 'src/styles'), /node_modules/],
-          use: ['style-loader', 'css-loader']
+          use: [MiniCssExtractPlugin.loader, 'css-loader']
         }, {
           test: /\.css$/,
           exclude: [path.resolve(__dirname, 'src/styles'), /node_modules/],
           use: [
-            'style-loader',
+            MiniCssExtractPlugin.loader,
             'css-loader?modules'
           ]
         }, {
@@ -70,19 +71,16 @@ module.exports = function (env, argv) {
         }
       ]
     },
-    // devServer配置
-    devServer: {
-      contentBase: './dist',
-      hot: true
-    },
 
     // 插件
     plugins: [
       new HtmlWebpackPlugin({
         template: 'index.html'
       }),
-      new webpack.NamedChunksPlugin(),
-      new webpack.HotModuleReplacementPlugin()
+      new MiniCssExtractPlugin({
+        filename: '[name].[contenthash:8].css',
+        chunkFilename: '[name].[contenthash:8].chunk.css',
+      })
     ],
     resolve: {
       alias: {

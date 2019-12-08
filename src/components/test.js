@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './test.less'
 
 class Test extends React.Component {
   constructor(props) {
@@ -20,7 +21,9 @@ class Test extends React.Component {
 
     return (
       <div>
-        <h2>{a}</h2>
+        <h2 className={styles.test}>{a}</h2>
+        <i className="fa fa-camera-retro" />
+        <div className={styles.box}>test</div>
         <button type="button" onClick={this.handleClick}>
           点击
         </button>
