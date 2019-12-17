@@ -1,0 +1,60 @@
+.main {
+  .tabs {
+    text-align: center;
+    margin-top: 15px;
+    a {
+      font-size: 18px;
+      margin: 0 8px;
+      font-weight: bold;
+      cursor: pointer;
+      &:hover {
+        color: #cccccc;
+      }
+    }
+    .active {
+      color: rgb(187, 46, 31)
+    }
+  }
+  .cardContent {
+    margin: 15px -6px 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .card {
+    margin: 6px 6px;
+    width: calc((100% - ((6px * 2) + 0px) * 4) / 4);
+    max-width: 100vw;
+  }
+
+  // 手机宽度
+  @media screen and (max-width: 575px) {
+    .card {
+      margin: 6px 0;
+      width: calc(100% - 0px);
+    }
+  }
+  // plus mobile ~ mini pad
+  @media screen and (min-width: 576px) and (max-width: 680px) {
+    .card {
+      // 宽度 = 屏幕宽度 - 间隔 - border - 左右的padding
+      width: calc((100% - ((6px * 2) + 0px) * 2) / 2);
+    }
+  }
+
+  // pad
+  @media screen and (min-width: 681px) and (max-width: 880px) {
+    .card {
+      width: calc((100% - ((6px * 2) + 0px) * 3) / 3);
+    }
+  }
+  @media screen and (min-width: 881px) and (max-width: 1080px) {
+    .card {
+      width: calc((100% - ((6px * 2) + 0px) * 4) / 4);
+    }
+  }
+  @media screen and (min-width: 1081px) and (max-width: 1400px) {
+    .card {
+      width: calc((100% - ((6px * 2) + 0px) * 4) / 4);
+    }
+  }
+}

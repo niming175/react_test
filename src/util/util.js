@@ -15,4 +15,17 @@ export const router = () => {
   }
 }
 
-export default router
+/**
+ * 格式化数字
+ * @param value
+ * @param len 保留的长度
+ */
+export function formatNumber(value, len = 0) {
+  if (!value || Number.isNaN(value)) {
+    return value;
+  }
+
+  const num = parseFloat(value);
+  return num.toFixed(len).replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+}
+
