@@ -3,7 +3,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import styles from "./index.less";
 import { get } from "../../servier/api";
 import Card from "./components/Card";
-import { formatNumber } from "../../util/util";
+import { formatNumber, pushRoute, router } from "../../util/util";
 
 class Popular extends React.Component {
   constructor(props) {
@@ -49,7 +49,25 @@ class Popular extends React.Component {
   }
 
   componentDidMount() {
-    this.fetch();
+    const { tabList } = this.state;
+    // 获取路由信息
+    const { query = {} } = router();
+
+    const { lang } = query;
+    let tabIndex = 0;
+    if (lang) {
+      tabList.forEach((item, index) => {
+        if (item.key === lang) {
+          tabIndex = index;
+        }
+      });
+      this.setState({
+        tabIndex
+      });
+      this.fetch({ q: `stars:>1 language:${lang}` }, "fatch");
+    } else {
+      this.fetch();
+    }
   }
 
   fetch = async (params = {}, type = "fetch") => {
@@ -108,6 +126,7 @@ class Popular extends React.Component {
     const { tabList } = this.state;
     this.setState({
       tabIndex: index,
+      error: {},
       data: {
         list: [],
         total: 0,
@@ -116,6 +135,12 @@ class Popular extends React.Component {
     });
 
     const lang = tabList[index].key;
+
+    pushRoute({
+      query: {
+        lang
+      }
+    });
 
     this.fetch({ q: `stars:>1 language:${lang}` }, "fatch");
   };
