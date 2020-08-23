@@ -1,0 +1,46 @@
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  box-sizing: border-box;
+
+  .showImg {
+    border: 1px solid red;
+    width: 600px;
+    padding: 15px;
+    text-align: center;
+    height: 300px;
+    margin: 0 auto;
+  }
+  .showWrapper {
+    margin-top: 30px;
+    margin-left: -15px;
+    margin-right: -15px;
+    overflow: hidden;
+    & > div {
+      float: left;
+      padding: 15px;
+      text-align: center;
+      width: calc(50% - 30px);
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+  }
+  @media (max-width: 767px) {
+    .showImg {
+      width: 100%;
+    }
+    .showWrapper {
+      margin-left: 0px;
+      margin-right: 0px;
+      & > div {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        &:nth-child(2) {
+          margin-top: 12px;
+        }
+      }
+    }
+  }
+}
