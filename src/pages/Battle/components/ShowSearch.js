@@ -103,7 +103,9 @@ class ShowSearch extends Component {
       <div>
         <div className={styles.from}>
           <h3>{title}</h3>
+          {/* 利用三元表达式去判断data，来显示搜索框和结果部分 */}
           {data ? (
+            // 结果部分
             <div className={styles.show}>
               <img src={data.avatar_url} alt="" />
               <span>{data.login}</span>
@@ -117,6 +119,7 @@ class ShowSearch extends Component {
               </a>
             </div>
           ) : (
+            // 搜索表单部分
             <form onSubmit={this.submit} style={{ marginTop: 12 }}>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <input
