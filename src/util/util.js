@@ -55,9 +55,9 @@ export const pushRoute = ({ page, query }) => {
     });
   }
   if (!thisPage) {
-    window.location.href = `/#/${newQuery}`;
+    window.location.href = `#/${newQuery}`;
   } else {
-    window.location.href = `/#/${thisPage}/${newQuery}`;
+    window.location.href = `#/${thisPage}/${newQuery}`;
   }
 };
 

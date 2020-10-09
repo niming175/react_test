@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = function (env, argv) {
@@ -12,7 +12,7 @@ module.exports = function (env, argv) {
     devtool: isEnvDevelopment ? 'source-map' : isEnvDevelopment && 'cheap-module-source-map',
     entry: './src/index.js',
     output: {
-      filename: 'bundle.js',
+      filename: 'dist/bundle.js',
       path: path.resolve(__dirname, 'dist')
     },
     module: {
